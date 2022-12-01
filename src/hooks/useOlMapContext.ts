@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { OlMapContext } from "../components/ol/OlMap";
-
+import { OlMapContext } from "../context/OlMapContext";
 export function useOlMapContext() {
   const mapContext = useContext(OlMapContext);
   if (!mapContext) {
