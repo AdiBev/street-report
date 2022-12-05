@@ -1,8 +1,8 @@
-import { Map } from "ol";
-import { createContext } from "react";
+import { Map } from "ol"
+import { createContext } from "react"
 
 type OlMapContextT = {
-  map: Map | undefined;
-};
+  map: Map | undefined
+}
 
-export const OlMapContext = createContext<OlMapContextT | null>(null);
+export const OlMapContext = createContext<OlMapContextT | null>(null)

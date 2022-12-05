@@ -1,9 +1,9 @@
-import { Map, View } from "ol";
-import { useGeographic } from "ol/proj";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { OlMapContext } from "../../context/OlMapContext";
-import { defaults as defaultControls } from "ol/control";
-import styled from "styled-components";
+import { Map, View } from "ol"
+import { useGeographic } from "ol/proj"
+import { useEffect, useMemo, useRef, useState } from "react"
+import { OlMapContext } from "../../context/OlMapContext"
+import { defaults as defaultControls } from "ol/control"
+import styled from "styled-components"
 
 const StyledMapWrapper = styled.div`
   width: 100%;
@@ -37,32 +37,32 @@ const StyledMapWrapper = styled.div`
       }
     }
   }
-`;
+`
 
 type OlMapProps = {
-  children: React.ReactNode;
-  zoom?: number;
-  center?: [number, number];
-};
+  children: React.ReactNode
+  zoom?: number
+  center?: [number, number]
+}
 
-const DEFAULT_ZOOM = 15;
-const DEFAULT_CENTER = [-0.189115, 51.502982];
+const DEFAULT_ZOOM = 15
+const DEFAULT_CENTER = [-0.189115, 51.502982]
 
 export const OlMap: React.FunctionComponent<OlMapProps> = ({
   children,
   zoom,
   center,
 }) => {
-  const [olMap, setOlMap] = useState<Map>();
-  const mapRef = useRef<HTMLDivElement>(null);
+  const [olMap, setOlMap] = useState<Map>()
+  const mapRef = useRef<HTMLDivElement>(null)
 
   // importing hook to use LAT/LON values
-  useGeographic();
+  useGeographic()
 
   const memoizedViewOptions = useMemo(
     () => ({ zoom: zoom ?? DEFAULT_ZOOM, center: center ?? DEFAULT_CENTER }),
     [center, zoom]
-  );
+  )
 
   useEffect(() => {
     const mapOptions = {
@@ -70,12 +70,12 @@ export const OlMap: React.FunctionComponent<OlMapProps> = ({
       layers: [],
       controls: defaultControls({ attribution: false, rotate: false }),
       overlays: [],
-    };
-    const olMap = new Map(mapOptions);
-    mapRef.current && olMap.setTarget(mapRef.current);
-    setOlMap(olMap);
-    return () => olMap.setTarget(undefined);
-  }, [memoizedViewOptions]);
+    }
+    const olMap = new Map(mapOptions)
+    mapRef.current && olMap.setTarget(mapRef.current)
+    setOlMap(olMap)
+    return () => olMap.setTarget(undefined)
+  }, [memoizedViewOptions])
 
   return (
     <OlMapContext.Provider value={{ map: olMap }}>
@@ -83,5 +83,5 @@ export const OlMap: React.FunctionComponent<OlMapProps> = ({
         {children}
       </StyledMapWrapper>
     </OlMapContext.Provider>
-  );
-};
+  )
+}
