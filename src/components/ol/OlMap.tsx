@@ -1,6 +1,14 @@
+import {
+  FunctionComponent,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
+
 import { Map, View } from "ol"
 import { useGeographic } from "ol/proj"
-import { useEffect, useMemo, useRef, useState } from "react"
 import { OlMapContext } from "../../context/OlMapContext"
 import { defaults as defaultControls } from "ol/control"
 import styled from "styled-components"
@@ -40,7 +48,7 @@ const StyledMapWrapper = styled.div`
 `
 
 type OlMapProps = {
-  children: React.ReactNode
+  children: ReactNode
   zoom?: number
   center?: [number, number]
 }
@@ -48,7 +56,7 @@ type OlMapProps = {
 const DEFAULT_ZOOM = 15
 const DEFAULT_CENTER = [-0.189115, 51.502982]
 
-export const OlMap: React.FunctionComponent<OlMapProps> = ({
+export const OlMap: FunctionComponent<OlMapProps> = ({
   children,
   zoom,
   center,

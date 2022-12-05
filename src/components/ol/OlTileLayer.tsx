@@ -1,6 +1,6 @@
+import { FunctionComponent, useEffect } from "react"
 import TileLayer from "ol/layer/Tile"
 import TileSource from "ol/source/Tile"
-import { useEffect } from "react"
 import { useOlMapContext } from "../../hooks/useOlMapContext"
 
 type OlTileLayerProps = {
@@ -8,7 +8,7 @@ type OlTileLayerProps = {
   zIndex?: number
 }
 
-export const OlTileLayer: React.FunctionComponent<OlTileLayerProps> = ({
+export const OlTileLayer: FunctionComponent<OlTileLayerProps> = ({
   source,
   zIndex = 0,
 }) => {
@@ -24,7 +24,7 @@ export const OlTileLayer: React.FunctionComponent<OlTileLayerProps> = ({
     return () => {
       map.removeLayer(olTileLayer)
     }
-  }, [map, source, zIndex])
+  }, [map, source])
 
   return null
 }
